@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "201602262497",
+    "firebase_url": "https://nexusedu-23122.firebaseio.com",
+    "project_id": "nexusedu-23122",
+    "storage_bucket": "nexusedu-23122.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:201602262497:android:8b0f0c8b28bb7179",
+        "android_client_info": {
+          "package_name": "com.vitech.nexusedu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "201602262497-3mcmbk9sm2e2taaeeq8kg6kmip7lo8aj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vitech.nexusedu",
+            "certificate_hash": "96f277ac26cd4b76f71a1123218356b68a6386c0"
+          }
+        },
+        {
+          "client_id": "201602262497-l7gj1ob0ofsqpt24p643s35i16e3k904.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlGVqKjQtveTSqZuB6oxb4dAYc97fBOSw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "201602262497-l7gj1ob0ofsqpt24p643s35i16e3k904.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
