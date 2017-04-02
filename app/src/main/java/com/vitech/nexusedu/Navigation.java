@@ -33,6 +33,7 @@ import okhttp3.Response;
 public class Navigation extends AppCompatActivity {
     View loginContainer ;
     SharedPreferences preferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,36 +99,43 @@ public class Navigation extends AppCompatActivity {
 
     class Login extends AsyncTask<String,String,String>{
 ProgressDialog dialog;
+        boolean f;
         @Override
         protected void onPreExecute() {
           dialog = new ProgressDialog(Navigation.this);
-            dialog.setIndeterminate(false);
+
+            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             dialog.setMessage("Loggin In... Please wait");
+           // dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+
             dialog.show();
         }
 
         @Override
         protected String doInBackground(final String... params) {
-            String rp  =  "0";
+        f = false;
             try {
 
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                final FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference  reference = database.getReference("passwords");
                 reference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         Iterator<DataSnapshot> iterator =  dataSnapshot.getChildren().iterator();
                         while (iterator.hasNext()){
-
-                           // Log.d(iterator.next().child("password").getValue().toString(),iterator.next().child("status").getValue().toString());
                         DataSnapshot current = iterator.next();
                             if(current.child("password").getValue().toString().equals(params[0])&&current.child("status").getValue().toString().equals("active")){
-
-                                onPostExecute("1");
-
+                                current.child("status").getRef().setValue("inactive", new DatabaseReference.CompletionListener() {
+                                    @Override
+                                    public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                     if(databaseError==null){
+                                         f=true;
+                                         onPostExecute("1");}}
+                                });
                             }
 
                         }
+                        Log.d("not found","passord");
                     }
 
                     @Override
@@ -139,7 +147,8 @@ ProgressDialog dialog;
             }catch (Exception e){
 return "0";
             }
-            return  "3";
+
+            return "4";
         }
 
         @Override
@@ -158,7 +167,11 @@ return "0";
                 dialog.cancel();
                 Toast.makeText(getApplicationContext(),"Error",Toast.LENGTH_LONG).show();
 
+            }else if(aBoolean.equals("3")){
+                dialog.cancel();
+                Toast.makeText(getApplicationContext(),"Invalid Log in",Toast.LENGTH_LONG).show();
             }
+
 
             super.onPostExecute(aBoolean);
         }

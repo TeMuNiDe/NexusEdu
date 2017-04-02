@@ -83,7 +83,7 @@ final DatabaseReference qreference = database.getReference("questions");
             Iterator<DataSnapshot> iterator =  dataSnapshot.getChildren().iterator();
             while (iterator.hasNext()){
                 DataSnapshot snapshot = iterator.next();
-                Log.d("refq",Boolean.toString(snapshot.child("set").exists()));
+               // Log.d("refq",Boolean.toString(snapshot.child("set").exists()));
                 questions.add(new Question(snapshot.child("set").getValue().toString(),snapshot.child("statement").getValue().toString(),snapshot.child("option_a").getValue().toString(),snapshot.child("option_b").getValue().toString(),snapshot.child("option_c").getValue().toString(),snapshot.child("option_d").getValue().toString(),snapshot.child("correct_answer").getValue().toString()));
             }
 

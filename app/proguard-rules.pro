@@ -15,3 +15,8 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+-keep class java.nio.file.*{ *; }
+-dontwarn java.nio.file.**
+-keep class org.codehaus.mojo.animal_sniffer.*{ *; }
+-dontwarn org.codehaus.mojo.animal_sniffer.**
+
